@@ -1,0 +1,28 @@
+{
+  "name": "sns_api",
+  "version": "1.0.0",
+  "description": "Rest based API for Social Media Clone (SNS)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "mongodb",
+    "express",
+    "jwt",
+    "api"
+  ],
+  "author": "@khasanjonovich",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "helmet": "^5.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
+  }
+}
