@@ -6,8 +6,8 @@ export default interface IUser {
   avatar?: string;
   coverPicture?: string;
   profilePicture?: string;
-  followers?: Array<Number>;
-  followings?: Number[];
+  followers?: Array<string>;
+  followings?: string[];
   role: ERole;
   desc: string;
   location: string;

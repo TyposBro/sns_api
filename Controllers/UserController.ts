@@ -43,3 +43,59 @@ export const deleteUser = async (req: Request, res: Response) => {
     res.status(403).json({ msg: "Unauthorized. You can delete only your own account" });
   }
 };
+
+//& FOLLOW A USER
+export const follow = async (req: Request, res: Response) => {
+  if (req.body.userId !== req.params.id) {
+    try {
+      const user = await UserModel.findById(req.params.id);
+      const currentUser = await UserModel.findById(req.body.userId);
+
+      //* CHECK IF ALREADY FOLLOWS
+      const followers = user ? user.followers : [];
+      if (!followers?.includes(req.body.userId)) {
+        console.log(`followers: ${user}`);
+
+        await user?.updateOne({ $push: { followers: req.body.userId } });
+        await currentUser?.updateOne({ $push: { followings: req.params.id } });
+
+        res.status(200).json({ msg: "Success" });
+      } else {
+        res.status(403).json({ msg: "Already following." });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ msg: "Internal Server Error. Try later." });
+    }
+  } else {
+    res.status(403).json({ msg: "You can't follow yourself." });
+  }
+};
+
+//~ UNFOLLOW A USER
+export const unfollow = async (req: Request, res: Response) => {
+  if (req.body.userId !== req.params.id) {
+    try {
+      const user = await UserModel.findById(req.params.id);
+      const currentUser = await UserModel.findById(req.body.userId);
+
+      //* CHECK IF ALREADY FOLLOWS
+      const followers = user ? user.followers : [];
+      if (followers?.includes(req.body.userId)) {
+        console.log(`followers: ${user}`);
+
+        await user?.updateOne({ $pull: { followers: req.body.userId } });
+        await currentUser?.updateOne({ $pull: { followings: req.params.id } });
+
+        res.status(200).json({ msg: "Success" });
+      } else {
+        res.status(403).json({ msg: "You aren't following this user." });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ msg: "Internal Server Error. Try later." });
+    }
+  } else {
+    res.status(403).json({ msg: "You can't unfollow yourself." });
+  }
+};
