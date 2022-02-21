@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createPost, updatePost, deletePost } from "../Controllers/PostControllers";
+import { createPost, updatePost, deletePost, react } from "../Controllers/PostControllers";
 
 const router: Router = Router();
 
@@ -18,10 +18,7 @@ router.put("/:id", updatePost);
 //! DELETE POST
 router.delete("/:id", deletePost);
 
-// //& LIKE POST
-// router.put("/:id/like", follow);
-
-// //~ DISLIKE POST
-// router.put("/:id/dislike", unfollow);
+//& LIKE/DISLIKE POST
+router.put("/:id/react", react);
 
 export default router;

@@ -3,5 +3,5 @@ export default interface IPost {
   desc: string;
   img: string;
   likes: string[];
-  dislikes: string[];
+  // TODO: enum reaction
 }

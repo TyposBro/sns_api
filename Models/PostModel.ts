@@ -7,7 +7,6 @@ const schema = new Schema<IPost>(
     desc: { type: String, max: 500 },
     img: { type: String },
     likes: { type: [String], default: [] },
-    dislikes: { type: [String], default: [] },
   },
   { timestamps: true }
 );

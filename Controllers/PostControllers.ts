@@ -36,3 +36,20 @@ export const deletePost = async (req: Request, res: Response) => {
     res.status(500);
   }
 };
+
+export const react = async (req: Request, res: Response) => {
+  try {
+    const post = await PostModel.findById(req.params.id);
+
+    if (!post?.likes.includes(req.body.userId)) {
+      await post?.updateOne({ $push: { likes: req.body.userId } });
+      res.sendStatus(200);
+    } else {
+      await post?.updateOne({ $pull: { likes: req.body.userId } });
+      res.sendStatus(200);
+    }
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
+};
