@@ -1,6 +1,12 @@
 import { Request, Response } from "express";
 import PostModel from "../Models/PostModel";
 
+export const getPost = async (req: Request, res: Response) => {
+  const post = await PostModel.findById(req.params.id).catch(() => res.status(500).json({ msg: "Internal Server Error" }));
+
+  res.status(200).json(post);
+};
+
 export const createPost = async (req: Request, res: Response) => {
   const newPost = PostModel.create(req.body).catch(() => res.status(500).json({ msg: "Internal server error. Try later." }));
 
