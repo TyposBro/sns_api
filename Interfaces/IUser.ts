@@ -8,23 +8,29 @@ export default interface IUser {
   profilePicture?: string;
   followers?: Array<Number>;
   followings?: Number[];
-  isAdmin?: boolean;
+  role: ERole;
   desc: string;
   location: string;
   hometown: string;
-  relationship: relationship;
-  status: status;
+  relationship: ERelationship;
+  status: EStatus;
+}
+export enum ERole {
+  admin = "Admin",
+  moderator = "Moderator",
+  user = "User",
 }
 
-enum relationship {
-  married,
-  single,
-  divorced,
+export enum ERelationship {
+  married = "Married",
+  single = "Single",
+  divorced = "Divorced",
+  unknown = "Unknown",
 }
 
-enum status {
-  online,
-  lastSeenRecently,
-  silent,
-  offline,
+export enum EStatus {
+  online = "Online",
+  lastSeenRecently = "Last seen recently",
+  silent = "Don't disturb me",
+  offline = "Offline",
 }

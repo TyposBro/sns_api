@@ -1,27 +1,19 @@
 import { Router } from "express";
-import { getUserList } from "../Controllers/UserController";
-import { body } from "express-validator";
-import { validateRegistration } from "../Middlewares/validate";
+import { getUserById, updateUser, deleteUser } from "../Controllers/UserController";
 
 const router: Router = Router();
 
-router.get("/", getUserList);
-
 //* GET/FIND USER
+router.get("/:id", getUserById);
 
 //& FOLLOW A USER
 
 //~ UNFOLLOW A USER
 
 //^ UPDATE USER
-router.put(
-  "/:id",
-  //! VALIDATION
-  [body("username").toLowerCase(), body("email").normalizeEmail(), body("password").isAlphanumeric().isLength({ min: 6 })],
-  validateRegistration
-  //* END
-);
+router.put("/:id", updateUser);
 
 //! DELETE USER
+router.delete("/:id", deleteUser);
 
 export default router;
