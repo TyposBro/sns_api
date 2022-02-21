@@ -1,12 +1,12 @@
 export default interface IUser {
-  username: String;
-  name: String;
-  email: String;
-  password: String;
-  avatar?: String;
-  coverPicture: String;
-  profilePicture: String;
-  followers: Array<Number>;
-  followings: Number[];
-  isAdmin: boolean;
+  username: string;
+  name: string;
+  email: string;
+  password: string;
+  avatar?: string;
+  coverPicture?: string;
+  profilePicture?: string;
+  followers?: Array<Number>;
+  followings?: Number[];
+  isAdmin?: boolean;
 }

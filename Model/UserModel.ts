@@ -3,10 +3,10 @@ import IUser from "../Interfaces/IUser";
 
 const schema = new Schema<IUser>(
   {
-    username: { type: String, required: true, unique: true, min: 3, max: 30 },
+    username: { type: String, required: true, unique: true, min: 3, max: 30, toLowerCase: true },
     name: { type: String, required: true },
-    email: { type: String, required: true, unique: true, min: 3, max: 30 },
-    password: { type: String, required: true, min: 6 },
+    email: { type: String, required: true, unique: true, min: 3, max: 30, lowercase: true },
+    password: { type: String, required: true, min: 6, select: false },
     profilePicture: { type: String, default: "" },
     coverPicture: { type: String, default: "" },
     followers: { type: [Number], default: [] },

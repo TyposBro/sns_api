@@ -15,6 +15,7 @@ run().catch((err) => console.error(err));
 
 async function run(): Promise<void> {
   await connect(process.env.DB!);
+  console.log("DB is ON");
 }
 
 app.use(express.json());
