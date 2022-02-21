@@ -1,5 +1,5 @@
 import IUser from "../Interfaces/IUser";
-import UserModel from "../Model/UserModel";
+import UserModel from "../Models/UserModel";
 import { Request, Response, NextFunction } from "express";
 import { HydratedDocument } from "mongoose";
 import { validationResult } from "express-validator";

@@ -1,4 +1,3 @@
-import { EStatus, ERelationship, ERole } from "./../Interfaces/IUser";
 import { Schema, model } from "mongoose";
 import IPost from "../Interfaces/IPost";
 
@@ -13,9 +12,6 @@ const schema = new Schema<IPost>(
   { timestamps: true }
 );
 
-const UserModel = model<IPost>("User", schema);
+const PostModel = model<IPost>("Post", schema);
 
-export default UserModel;
-function SchemaDefinitionProperty<T>(arg0: number): import("mongoose").NumberSchemaDefinition | undefined {
-  throw new Error("Function not implemented.");
-}
+export default PostModel;

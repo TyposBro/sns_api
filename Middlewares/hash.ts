@@ -2,7 +2,7 @@ import * as bcrypt from "bcrypt";
 import { Request, Response, NextFunction } from "express";
 import { HydratedDocument } from "mongoose";
 import IUser from "../Interfaces/IUser";
-import UserModel from "../Model/UserModel";
+import UserModel from "../Models/UserModel";
 
 export const hash = async (req: Request, res: Response, next: NextFunction) => {
   try {

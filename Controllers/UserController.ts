@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import * as bcrypt from "bcrypt";
-import UserModel from "../Model/UserModel";
+import UserModel from "../Models/UserModel";
 
 export const getUserById = async (req: Request, res: Response) => {
   const user = await UserModel.findById(req.params.id).catch(() => res.status(500).json({ msg: "Internal Server Error. Try later" }));
