@@ -10,7 +10,7 @@ router.post(
   "/register",
   //! VALIDATION
   [body("username").toLowerCase(), body("email").isEmail().normalizeEmail(), body("password").isAlphanumeric().isLength({ min: 6 })],
-  // !END
+  //* END
   hash,
   validateRegistration,
   duplicateCheck,
@@ -19,8 +19,9 @@ router.post(
 router.post(
   "/login",
   //! VALIDATION
-  [body("username").toLowerCase(), body("email").isEmail().normalizeEmail(), body("password").isAlphanumeric().isLength({ min: 6 })],
-  // !END
+  [body("username").toLowerCase(), body("email").normalizeEmail(), body("password").isAlphanumeric().isLength({ min: 6 })],
+  validateRegistration,
+  //* END
   login
 );
 

@@ -13,7 +13,7 @@ export const register = async (req: Request, res: Response) => {
   });
 
   try {
-    const user = await newUser.save();
+    const user: IUser | null = await newUser.save();
     console.log(user);
 
     res.status(200).json({ msg: "OK" });
@@ -24,14 +24,16 @@ export const register = async (req: Request, res: Response) => {
 };
 
 export const login = async (req: Request, res: Response) => {
-  const user = await UserModel.findOne({ $or: [{ email: req.body.email }, { username: req.body.username }] });
+  const user: IUser | null = await UserModel.findOne({ $or: [{ email: req.body.email }, { username: req.body.username }] });
 
   //! USER NOT FOUND
   !user && res.status(404).json({ msg: "User Not Found" });
 
   try {
-    const pwd = await bcrypt.compare(req.body.password, user.password);
-    //! WRONG PASSWORD
+    const password = user ? user.password : "";
+
+    const pwd = await bcrypt.compare(req.body.password, password);
+
     !pwd && res.status(400).json({ msg: "Wrong password" });
 
     //* SUCCESS

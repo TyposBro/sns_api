@@ -9,8 +9,6 @@ export const hash = async (req: Request, res: Response, next: NextFunction) => {
     const salt = await bcrypt.genSalt(10);
     req.body.encrypted = await bcrypt.hash(req.body.password, salt);
 
-    console.log("Hash Next");
-
     next();
   } catch (error) {
     console.error(error);
