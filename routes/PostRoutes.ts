@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getPost, createPost, updatePost, deletePost, react } from "../Controllers/PostControllers";
+import { getPost, createPost, getTimeline, updatePost, deletePost, react } from "../Controllers/PostControllers";
 
 const router: Router = Router();
 
@@ -10,7 +10,7 @@ router.post("/", createPost);
 router.get("/:id", getPost);
 
 // //* GET/FIND TIMELINE POSTS
-// router.get("/", createPost);
+router.get("/", getTimeline);
 
 //^ UPDATE POST
 router.put("/:id", updatePost);

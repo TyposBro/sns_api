@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import PostModel from "../Models/PostModel";
+import UserModel from "../Models/UserModel";
 
 export const getPost = async (req: Request, res: Response) => {
   const post = await PostModel.findById(req.params.id).catch(() => res.status(500).json({ msg: "Internal Server Error" }));
@@ -56,6 +57,21 @@ export const react = async (req: Request, res: Response) => {
     }
   } catch (error) {
     console.error(error);
+    res.sendStatus(500);
+  }
+};
+
+export const getTimeline = async (req: Request, res: Response) => {
+  try {
+    const user: any = await UserModel.findById(req.body.userId);
+    const userPosts = await PostModel.find({ userId: req.body.userId });
+    const friendPosts = await Promise.all(user?.followings?.map((friendId: any) => PostModel.find({ userId: friendId })));
+
+    // TODO: check
+    res.status(200).json(userPosts.concat(...friendPosts));
+  } catch (error) {
+    console.error(error);
+
     res.sendStatus(500);
   }
 };
